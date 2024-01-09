@@ -1,0 +1,65 @@
+void bfs(Tgrafo *g) {
+    Fila fila;
+    inicializarFila(&fila);
+	Tgrafo *aux = g;
+
+	if(!g){
+		printf("Grafo Nulo");
+		return;
+	}
+
+	int n = qtd_nos(g);
+	int i=0;
+	int visitados[2][n];
+
+	visitados[0][i] = aux->no; //atribuindo o rótulo do primeiro nó
+	visitados[1][i] = 1; //marcando como visitado
+	aux = aux->prox;
+
+	for (i=1; i<n; i++){
+		visitados[0][i] = aux->no; //atribuindo o rótulo
+		visitados[1][i] = 0; //marcando como não visitado
+		aux = aux->prox;
+	}
+
+    enfileirar(&fila, visitados[0][0]);
+
+
+    while (!filaVazia(&fila)) {
+        int noAtual = desenfileirar(&fila);
+        //printf("%d ", noAtual);
+
+        Tviz *vizinho = g->prim_viz;
+
+        while (vizinho != NULL) {
+	    printf("teste\n");
+	    //encontra em que posição está o vizinho a ser expandido
+	    for (i=0; i<n; i++){
+		if (visitados[0][i]==vizinho->id){
+			printf("%d\n",i);
+			break;
+		}
+	    }
+
+	    //verifica se ele já é visitado
+            if (visitados[1][i]==0) {
+                visitados[1][i] = 1;
+                enfileirar(&fila, vizinho->id);
+            }
+	   
+            vizinho = vizinho->prox_viz;
+        }
+    }
+
+
+	//verifica se todos foram visitados
+	for (i=0; i<n; i++){
+		if (visitados[1][i]==0){
+			printf("Grafo Não é conexo\n");
+			return;
+		}
+	}
+
+	printf("grafo conexo!\n");
+
+}
