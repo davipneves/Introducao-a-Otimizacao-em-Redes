@@ -1,1 +1,1 @@
-Teoria, implementação e algoritmos básicos de estrutura de dados avançada para representação de redes (grafos). Implementação de algoritmos clássicos em redes. Busca em grafos. Árvore Geraroda Mímima.
+Teoria, implementação e algoritmos básicos de estrutura de dados avançados para representação de redes (grafos). Implementação de algoritmos clássicos em redes. Busca em grafos. Árvore Geraroda Mímima.
